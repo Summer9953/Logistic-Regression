@@ -1,0 +1,33 @@
+import pandas as pd
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.preprocessing import LabelEncoder
+
+df = pd.read_csv("C:\ConsoleFlare_Classes\Logistic Regression\Train_Titanic.csv")
+
+df = df.drop(["PassengerId","Name","Ticket"], axis =1)
+
+# sns.countplot(data= df, x= "Pclass", hue = "Survived")
+# plt.show()
+
+# sns.countplot(data= df, x= "Gender", hue = "Survived")
+# plt.show()
+#
+# sns.countplot(data= df, x= "Fare", hue = "Survived")
+# plt.show()
+
+
+df = df.drop(["Cabin"], axis =1)
+
+print(df)
+
+le  = LabelEncoder()
+df["Gender"] = le.fit_transform(df["Gender"])
+
+print(df)
+
+df["Age"] = df["Age"].fillna(value= df["Age"].mean())
+
+print(df)
